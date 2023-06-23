@@ -1,0 +1,17 @@
+class Solution {
+    public int[] runningSum(int[] nums) {
+        int[] news = new int[nums.length];
+        int i = 0;
+        int newCount = 0;
+        int currentTotal = 0;
+
+        while(i<nums.length) {
+            newCount = currentTotal + nums[i];
+            news[i] = newCount;
+            i++;
+            currentTotal = newCount;
+        }
+
+        return news;
+    }
+}
