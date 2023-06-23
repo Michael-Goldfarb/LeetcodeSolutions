@@ -1,17 +1,25 @@
 class Solution {
     public int[] runningSum(int[] nums) {
+        // create an array the length of the given array
         int[] news = new int[nums.length];
+        // index
         int i = 0;
+        // current value
         int newCount = 0;
+        // total of array values before the current value, starts at zero
         int currentTotal = 0;
 
+        // loops through the array
         while(i<nums.length) {
+            // get the total of the current index added to the previous indices
             newCount = currentTotal + nums[i];
+            // add to the new array
             news[i] = newCount;
+            // increment the index
             i++;
+            // update the current total
             currentTotal = newCount;
         }
-
         return news;
     }
 }

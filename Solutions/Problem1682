@@ -1,0 +1,22 @@
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        // create a variable for the amount to be returned
+        int finalCount = 0;
+        // create a variable to store the running total
+        int count = 0;
+        // loop through the 2d array
+        for(int m=0; m<accounts.length; m++) {
+            for(int n=0; n<accounts[m].length; n++) {
+                // add to count variable
+                count += accounts[m][n];
+            }
+            // check if the running total is the maximum
+            if(count > finalCount) {
+                finalCount = count;
+            }
+            // reset count to 0 before the loop reset
+            count = 0;
+        }
+        return finalCount;
+    }
+}
