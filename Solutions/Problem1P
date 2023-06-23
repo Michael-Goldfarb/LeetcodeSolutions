@@ -1,0 +1,19 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # Hash map to store values and their indices
+        num_map = {}
+    
+        # loop through the given array
+        for i, num in enumerate(nums):
+            # create a variable equal to the target subtracted by the current value of the given array
+            complement = target - num
+            # if statement to see if the create variable is in the hashmap
+            if complement in num_map:
+                # if it is in the hashmap, return an array of the values that add up to the target
+                return [num_map[complement], i]
+        
+            # set the value of the current index of the hashmap to the value of the current index
+            num_map[num] = i
+    
+        # if no solution found, return an empty array
+        return []

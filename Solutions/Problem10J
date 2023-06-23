@@ -1,0 +1,12 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        // store x as a String
+        String xLen = String.valueOf(x);
+        // create a StringBuilder to make the new reversed String
+        StringBuilder sb = new StringBuilder(xLen);
+        // create the reversed String by using the reverse() function
+        String reversed = sb.reverse().toString();
+        // return if the reversed and regular String are equal
+        return xLen.equals(reversed);
+    }
+}
