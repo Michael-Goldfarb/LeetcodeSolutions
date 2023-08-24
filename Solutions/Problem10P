@@ -6,6 +6,8 @@ class Solution(object):
         """
         # make x a String
         xLen = str(x)
+        # get the reversed String
         reversed = xLen[::-1]
         
+        # see if the reversed and original String are equal
         return xLen == reversed
