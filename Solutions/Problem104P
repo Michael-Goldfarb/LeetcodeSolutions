@@ -13,6 +13,7 @@ class Solution(object):
         maximum = 0
         if not root:
             return 0
+        # create queue
         queues = deque()
         queues.append(root)
         while queues:
