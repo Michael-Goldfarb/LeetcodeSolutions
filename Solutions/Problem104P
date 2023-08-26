@@ -15,6 +15,7 @@ class Solution(object):
             return 0
         # create queue
         queues = deque()
+        # add root to queue
         queues.append(root)
         while queues:
             for i in range(len(queues)):
