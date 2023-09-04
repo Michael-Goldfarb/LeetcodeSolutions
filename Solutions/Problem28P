@@ -1,0 +1,17 @@
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        # iterate through each character in haystack - needle
+        # check if string exists (using slicing)
+        # else
+        # return false
+        # if len(haystack) == len(needle) == 1 and needle == haystack:
+        #     return 0
+        for index in range(0, len(haystack)-len(needle)+1):
+            if haystack[index:index+len(needle)] == needle:
+                return index
+        return -1
