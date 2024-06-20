@@ -1,0 +1,8 @@
+class Solution:
+    def findNumbers(self, nums: List[int]) -> int:
+        amountOfEven = 0
+        for num in nums:
+            numString = str(num)
+            if len(numString) % 2 == 0:
+                amountOfEven += 1
+        return amountOfEven
