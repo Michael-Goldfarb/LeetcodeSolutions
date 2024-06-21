@@ -1,6 +1,13 @@
 class Solution:
     def dayOfYear(self, date: str) -> int:
+        year = int(date[:4])
         month = date[5:7]
         day = int(date[8:])
-        hashMaps = {"01":0, "02":31, "03":59, "04":89, "05":120, "06":150, "07":181, "08":212, "09":243, "10":273, "11":304, "12":334}   
+        hashMaps = {"01":0, "02":31, "03":59, "04":89, "05":120, "06":150, "07":181, "08":212, "09":243, "10":273, "11":304, "12":334}
+        
+        # Check for leap year and adjust days from March onwards
+        if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+            if month > "02":
+                return hashMaps[month] + day + 1
+        
         return hashMaps[month] + day
