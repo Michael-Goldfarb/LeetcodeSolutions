@@ -1,0 +1,6 @@
+class Solution:
+    def dayOfYear(self, date: str) -> int:
+        month = date[5:7]
+        day = int(date[8:])
+        hashMaps = {"01":0, "02":31, "03":59, "04":89, "05":120, "06":150, "07":181, "08":212, "09":243, "10":273, "11":304, "12":334}   
+        return hashMaps[month] + day
