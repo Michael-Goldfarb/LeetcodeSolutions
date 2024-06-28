@@ -1,0 +1,9 @@
+class Solution:
+    def findFinalValue(self, nums: List[int], original: int) -> int:
+        equalsTo = True
+        output = original
+        while equalsTo == True:
+            if output in nums:
+                output *= 2
+            else:
+                return output
