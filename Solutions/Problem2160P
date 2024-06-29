@@ -1,0 +1,15 @@
+class Solution:
+    def minimumSum(self, num: int) -> int:
+        strNum = str(num)
+        sortedStrNum = sorted(strNum)
+        maps = []
+        for num in sortedStrNum:
+            maps.append(num)
+        if maps[0] == "0":
+             firstInt = (int)("".join(maps[0:3]))
+             secondInt = (int)("".join(maps[3]))
+             return firstInt + secondInt
+        else:
+             firstInt = (int)("".join(maps[0]+maps[2]))
+             secondInt = (int)("".join(maps[1]+ maps[3]))
+             return firstInt + secondInt
