@@ -1,0 +1,9 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        twoHousesAgo, oneHouseAgo = 0, 0
+
+        for n in nums:
+            temp = max(n + twoHousesAgo, oneHouseAgo)
+            twoHousesAgo = oneHouseAgo
+            oneHouseAgo = temp
+        return oneHouseAgo
