@@ -1,0 +1,62 @@
+DIRECTIONS = [(0, 1),  (1, 0), (0, -1), (-1, 0)]
+class Solution:
+    def regionsBySlashes(self, grid: List[str]) -> int:
+        # edge case
+        
+        array = []
+        for line in grid:
+            array.extend(self.parse(line))
+        
+        #print(" ")
+        #for l in array:
+        #    print(l)
+            
+        m, n = len(array), len(array[0])
+        index = 1
+        for i in range(m):
+            for j in range(n):
+                if array[i][j] != 0:
+                    continue
+                array[i][j] = index
+                self.dfs(array, i, j, index)
+                index += 1
+
+        #print("---")
+        #for l in array:
+        #    print(l)
+            
+        return index - 1
+    
+    def parse(self, line):
+        result = [[],[],[]]
+        for i, v in enumerate(line):
+            if v == ' ':
+                result[0].extend([0, 0, 0])
+                result[1].extend([0, 0, 0])
+                result[2].extend([0, 0, 0])
+            elif v == '/':
+                result[0].extend([0, 0, -1])
+                result[1].extend([0, -1, 0])
+                result[2].extend([-1, 0, 0])
+            elif v == '\\':
+                result[0].extend([-1, 0, 0])
+                result[1].extend([0, -1, 0])
+                result[2].extend([0, 0, -1])
+                
+        return result
+                
+        
+    def dfs(self, array, i, j, index):
+        for di, dj in DIRECTIONS:
+            ni, nj = i + di, j + dj
+            if not self.valid(array, ni, nj):
+                continue
+            
+            array[ni][nj] = index
+            self.dfs(array, ni, nj, index)
+                
+    def valid(self, array, i, j):
+        if i < 0 or j < 0 or i >= len(array) or j >= len(array[0]):
+            return False
+        
+        return array[i][j] == 0
