@@ -22,4 +22,4 @@ class Solution:
                 better_answer = self.Util(i, k - 1, s, dp) + self.Util(k + 1, j, s, dp)
                 answer = min(answer, better_answer)
         dp[i][j] = answer
-        return answer
+        return answer 
