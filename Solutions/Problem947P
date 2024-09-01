@@ -16,7 +16,7 @@ class Solution:
         visited = set()
         
         def dfs(node):
-            stack = [node]
+            stack = [node] 
             while stack:
                 current = stack.pop()
                 if current not in visited:
