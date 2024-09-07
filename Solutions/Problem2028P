@@ -7,4 +7,4 @@ class Solution:
         if miss > 6*n or miss < n: 
             return []
         q, r = divmod(miss, n)
-        return [q+1] * r+[q] * (n-r)
+        return [q+1] * r+[q] * (n-r) 
