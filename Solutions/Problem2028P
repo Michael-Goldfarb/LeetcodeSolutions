@@ -1,6 +1,6 @@
 class Solution:
     def missingRolls(self, rolls: List[int], mean: int, n: int) -> List[int]:
-        m = len(rolls)
+        m = len(rolls) 
         sum_rolls = sum(rolls)  
         total = (n+m) * mean 
         miss = total - sum_rolls
