@@ -1,0 +1,34 @@
+class Solution:
+    def continuousSubarrays(self, nums: List[int]) -> int:
+        n = len(nums)
+        left = 0
+        total_subarrays = 0
+
+        # Deques to maintain indices of maximum and minimum elements
+        maxDeque = deque()
+        minDeque = deque()
+
+        for right in range(n):
+            # Maintain the maxDeque
+            while maxDeque and nums[maxDeque[-1]] <= nums[right]:
+                maxDeque.pop()
+            maxDeque.append(right)
+
+            # Maintain the minDeque
+            while minDeque and nums[minDeque[-1]] >= nums[right]:
+                minDeque.pop()
+            minDeque.append(right)
+
+            # Shrink the window if invalid
+            while nums[maxDeque[0]] - nums[minDeque[0]] > 2:
+                left += 1
+                # Remove elements out of bounds from the deques
+                if maxDeque[0] < left:
+                    maxDeque.popleft()
+                if minDeque[0] < left:
+                    minDeque.popleft()
+
+            # Count valid subarrays ending at 'right'
+            total_subarrays += (right - left + 1)
+
+        return total_subarrays
