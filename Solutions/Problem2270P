@@ -1,0 +1,14 @@
+class Solution:
+    def waysToSplitArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        leftSideSum = 0
+        rightSideSum = sum(nums)
+        validSplits = 0
+        
+        for i in range(n-1):
+            leftSideSum += nums[i]
+            rightSideSum -= nums[i]
+            if leftSideSum >= rightSideSum:
+                validSplits += 1
+                
+        return validSplits
