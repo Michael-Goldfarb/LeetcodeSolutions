@@ -1,0 +1,19 @@
+from collections import Counter
+
+class Solution:
+    def wordSubsets(self, words1: List[str], words2: List[str]) -> List[str]:
+        # Step 1: Build the maximum frequency requirement for words2
+        trackletters = Counter()
+        for word in words2:
+            word_count = Counter(word)
+            for char in word_count:
+                trackletters[char] = max(trackletters[char], word_count[char])
+        
+        # Step 2: Find universal words in words1
+        res = []
+        for word in words1:
+            word_count = Counter(word)
+            if all(word_count[char] >= trackletters[char] for char in trackletters):
+                res.append(word)
+        
+        return res
