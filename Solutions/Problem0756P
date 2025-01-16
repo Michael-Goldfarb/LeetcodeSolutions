@@ -1,0 +1,25 @@
+class Solution:
+    def pyramidTransition(self, bottom: str, allowed: List[str]) -> bool:
+        transition = {}
+        for triplet in allowed:
+            transition.setdefault(triplet[:2], []).append(triplet[2])
+
+        memo = {}
+        
+        def can_build(row):
+            if row in memo:
+                return memo[row]
+            
+            if len(row) == 1: 
+                return True
+            
+            next_row = []
+            for i in range(len(row) - 1):
+                if row[i:i+2] not in transition:
+                    return False
+                next_row.append(transition[row[i:i+2]])
+            
+            memo[row] = any(can_build("".join(candidate)) for candidate in itertools.product(*next_row))
+            return memo[row]
+        
+        return can_build(bottom)
