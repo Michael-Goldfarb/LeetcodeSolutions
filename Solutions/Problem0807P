@@ -1,0 +1,18 @@
+class Solution:
+    def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
+        n = len(grid)
+        
+        # Step 1: Compute max heights for rows and columns
+        max_row = [max(row) for row in grid]
+        max_col = [max(grid[r][c] for r in range(n)) for c in range(n)]
+        
+        # Step 2: Calculate total height increase
+        total_increase = 0
+        for r in range(n):
+            for c in range(n):
+                # Calculate the maximum allowed height
+                allowed_height = min(max_row[r], max_col[c])
+                # Increase the building height
+                total_increase += allowed_height - grid[r][c]
+        
+        return total_increase
