@@ -1,0 +1,30 @@
+class Solution:
+    def gridGame(self, grid: List[List[int]]) -> int:
+        n = len(grid[0])
+        
+        # Step 1: Compute prefix sums for row 0 and row 1
+        prefix_row0 = [0] * n
+        prefix_row1 = [0] * n
+        
+        prefix_row0[0] = grid[0][0]
+        prefix_row1[0] = grid[1][0]
+        
+        for i in range(1, n):
+            prefix_row0[i] = prefix_row0[i - 1] + grid[0][i]
+            prefix_row1[i] = prefix_row1[i - 1] + grid[1][i]
+        
+        # Step 2: Simulate the first robot's moves and calculate the second robot's optimal response
+        result = float('inf')
+        
+        for c in range(n):
+            # Points remaining for the second robot if the first robot goes down at column c
+            points_top = prefix_row0[-1] - prefix_row0[c]  # Points left on the top row after column c
+            points_bottom = prefix_row1[c - 1] if c > 0 else 0  # Points left on the bottom row before column c
+            
+            # The second robot collects the maximum of the two segments
+            second_robot_points = max(points_top, points_bottom)
+            
+            # The first robot minimizes the second robot's points
+            result = min(result, second_robot_points)
+        
+        return result
